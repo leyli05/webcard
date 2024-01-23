@@ -1,14 +1,10 @@
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import javax.swing.*;
-
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.cssClass;
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CardOrderTest {
     @Test
@@ -41,7 +37,7 @@ public class CardOrderTest {
         $("[data-test-id=phone] input").setValue("+79001234567");
         $("[data-test-id=agreement]").click();
         $("button").click();
-        $("[data-test-id=name] .input__sub").shouldHave(exactText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."));
+        $("[data-test-id=name].input_invalid .input__sub").shouldHave(exactText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."));
 
     }
 
@@ -53,7 +49,7 @@ public class CardOrderTest {
         $("[data-test-id=phone] input").setValue("791234567");
         $("[data-test-id=agreement]").click();
         $("button").click();
-        $("[data-test-id=phone] .input__sub").shouldHave(exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
+        $("[data-test-id=phone].input_invalid .input__sub").shouldHave(exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
     }
 
     @Test
@@ -75,7 +71,7 @@ public class CardOrderTest {
         $("[data-test-id=phone] input").setValue("+79001234567");
         $("[data-test-id=agreement]").click();
         $("button").click();
-        $("[data-test-id=name] .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
+        $("[data-test-id=name].input_invalid .input__sub ").shouldHave(exactText("Поле обязательно для заполнения"));
     }
 
     @Test
@@ -86,6 +82,6 @@ public class CardOrderTest {
         $("[data-test-id=phone] input").setValue("");
         $("[data-test-id=agreement]").click();
         $("button").click();
-        $("[data-test-id=phone] .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
+        $("[data-test-id=phone].input_invalid .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
     }
 }
