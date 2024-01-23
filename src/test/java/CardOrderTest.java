@@ -12,6 +12,6 @@ public class CardOrderTest {
         $("[data-test-id=phone] input").setValue("+79001234567");
         $("[data-test-id=agreement]").click();
         $("button").click();
-        $("[data-test-id=order-success]").shouldHave(exactText("Твоя заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время."));
+        $("[data-test-id=order-success]").shouldHave(exactText("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время."));
     }
 }
